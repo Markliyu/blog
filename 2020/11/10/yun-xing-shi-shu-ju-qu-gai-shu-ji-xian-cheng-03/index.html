@@ -6,12 +6,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="MyBatis自定义实现, 李玉的博客">
+    <meta name="keywords" content="运行时数据区概述及线程(03), 李玉的博客">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="简短介绍MyBatis自定义实现
+    <meta name="description" content="运行时数据区概述及线程前言本节主要讲的是运行时数据区，也就是下图这部分，它是在类加载完成后的阶段
 
-代理模式总结：为其他对象提供代理以控制对某个对象的使用权，代理类是为委托类处理消息、传递消息、过滤消息，代理类并不完成具体的业务操作，而是利用委托类来实现服务，并将执行结果封装处理。其实代理类就是为委托类">
+当我们通过前面的：类的加载-&amp;gt; 验证 -&amp;gt; 准备 -&amp;gt; 解析 -&amp;gt; 初始化 这几个阶段完成后，就会用到执行引擎对我们">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MyBatis自定义实现 | 李玉的博客</title>
+    <title>运行时数据区概述及线程(03) | 李玉的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -618,13 +618,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        MyBatis自定义实现
+                        运行时数据区概述及线程(03)
                     </div>
                 </div>
             </div>
@@ -736,12 +736,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JAVA/" target="_blank">
-                                <span class="chip bg-color">JAVA</span>
-                            </a>
-                        
-                            <a href="/tags/MyBatis/" target="_blank">
-                                <span class="chip bg-color">MyBatis</span>
+                            <a href="/tags/Jvm/" target="_blank">
+                                <span class="chip bg-color">Jvm</span>
                             </a>
                         
                     </div>
@@ -752,8 +748,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/MyBatis/" class="post-category" target="_blank">
-                                MyBatis
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                Jvm
                             </a>
                         
                     </div>
@@ -764,7 +760,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-15
+                    2020-11-10
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -778,7 +774,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        761
+                        1k
                     </div>
                     
 
@@ -802,153 +798,39 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简短介绍"><a href="#简短介绍" class="headerlink" title="简短介绍"></a>简短介绍</h1><p>MyBatis自定义实现</p>
-<hr>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>总结：为其他对象提供代理以控制对某个对象的使用权，代理类是为委托类处理消息、传递消息、过滤消息，代理类并不完成具体的业务操作，而是利用委托类来实现服务，并将执行结果封装处理。<br>其实代理类就是为委托类预处理消息、过滤消息，然后转发给委托类，之后还能进行消息的后置处理，代理类本身不实现服务，而是通过委托类的方法来实现。<br>包括静态代理和动态代理</p>
-<h3 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h3><ul>
-<li><p>1.接口</p>
-<pre><code>  
-public interface IRentHouse {
-  public void rent();
-}
-</code></pre></li>
-<li><p>2.实现类</p>
-<pre><code> 
-public class RentHouseImpl implements IRentHouse {
-  @Override
-  public void rent() {
-      System.out.println("我需要租一间房子");
-  }
-}
-</code></pre></li>
-<li><p>3.静态代理</p>
-<pre><code> 
-public class RentHouseProxy implements IRentHouse{
-
-  private IRentHouse iRentHouse = new RentHouseImpl();
-
-  @Override
-  public void rent() {
-      System.out.println("我是中介");
-      iRentHouse.rent();
-      System.out.println("需要缴纳中介费");
-  }
-}
-</code></pre></li>
-<li><p>3.静态代理调用</p>
-<pre><code> 
-@Test
-  public void staticProxy(){
-      RentHouseProxy staticProxy = new RentHouseProxy();
-      staticProxy.rent();
-  }
-</code></pre>
-
-</li>
-</ul>
-<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><h4 id="jdk动态代理"><a href="#jdk动态代理" class="headerlink" title="jdk动态代理"></a>jdk动态代理</h4><pre><code> 
- @Test
-    public void dynamicProxy(){
-        IRentHouse iRentHouse = new RentHouseImpl();
-        //动态代理 生成代理对象
-        IRentHouse proxy = (IRentHouse)Proxy.newProxyInstance(iRentHouse.getClass().getClassLoader(), iRentHouse.getClass().getInterfaces(), new InvocationHandler() {
-            @Override
-            public Object invoke(Object o, Method method, Object[] args) throws Throwable {
-                Object result = null;
-                System.out.println("我是中介");
-                result = method.invoke(iRentHouse, args);
-                System.out.println("需要缴纳中介费");
-                return result;
-            }
-        });
-        proxy.rent();
-    }
-</code></pre>
-
-<h4 id="cglib动态代理"><a href="#cglib动态代理" class="headerlink" title="cglib动态代理"></a>cglib动态代理</h4><p>由于cglib属于外部jar包，需导入pom</p>
-<!--cglib-->
-<pre><code>    &lt;dependency&gt;
-        &lt;groupId&gt;cglib&lt;/groupId&gt;
-        &lt;artifactId&gt;cglib&lt;/artifactId&gt;
-        &lt;version&gt;2.2.2&lt;/version&gt;
-    &lt;/dependency&gt;</code></pre><pre><code> 
-@Test
-    public void cglibProxy(){
-        RentHouseImpl rentHouse = new RentHouseImpl();
-        RentHouseImpl cglibProxy = (RentHouseImpl)Enhancer.create(rentHouse.getClass(), new MethodInterceptor() {
-            @Override
-            public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-                Object result = null;
-                System.out.println("我是中介");
-                result = method.invoke(rentHouse, objects);
-                System.out.println("需要缴纳中介费");
-                return result;
-            }
-        });
-
-        cglibProxy.rent();
-    }
-</code></pre>
-
-<h4 id="封装工具类"><a href="#封装工具类" class="headerlink" title="封装工具类"></a>封装工具类</h4><pre><code> 
-public class ProxyFactory {
-
-    private ProxyFactory(){};
-
-    private static ProxyFactory proxyFactory = new ProxyFactory();
-
-    public static ProxyFactory getInstance(){
-        return proxyFactory;
-    }
-
-    /**
-     * 返回jdk动态代理 委托类需实现接口
-     */
-    public Object getJdkProxy(Object object){
-
-        return Proxy.newProxyInstance(object.getClass().getClassLoader(), object.getClass().getInterfaces(), new InvocationHandler() {
-            @Override
-            public Object invoke(Object o, Method method, Object[] args) throws Throwable {
-                Object result = null;
-                System.out.println("动态代理前消息处理");
-                result = method.invoke(object, args);
-                System.out.println("动态代理后消息处理");
-                return result;
-            }
-        });
-    }
-
-    /**
-     *  返回cglib动态代理 委托类无需实现接口
-     */
-    public Object getCglibProxy(Object object){
-
-        return Enhancer.create(object.getClass(), new MethodInterceptor() {
-            @Override
-            public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-                Object result = null;
-                System.out.println("动态代理前消息处理");
-                result = method.invoke(object, args);
-                System.out.println("动态代理后消息处理");
-                return result;
-            }
-        });
-    }
-
-}
-</code></pre>
-
+                <h1 id="运行时数据区概述及线程"><a href="#运行时数据区概述及线程" class="headerlink" title="运行时数据区概述及线程"></a>运行时数据区概述及线程</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本节主要讲的是运行时数据区，也就是下图这部分，它是在类加载完成后的阶段</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705111640511.png" alt="image-20200705111640511"></p>
+<p>当我们通过前面的：类的加载-&gt; 验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 这几个阶段完成后，就会用到执行引擎对我们的类进行使用，同时执行引擎将会使用到我们运行时数据区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705111843003.png" alt="image-20200705111843003"></p>
+<p>也就是大厨做饭，我们把大厨后面的东西（切好的菜，刀，调料），比作是运行时数据区。而厨师可以类比于执行引擎，将通过准备的东西进行制作成精美的菜品</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705112036630.png" alt="image-20200705112036630"></p>
+<p>内存是非常重要的系统资源，是硬盘和CPU的中间仓库及桥梁，承载着操作系统和应用程序的实时运行JVM内存布局规定了Java在运行过程中内存申请、分配、管理的策略，保证了JVM的高效稳定运行。不同的JVM对于内存的划分方式和管理机制存在着部分差异。结合JVM虚拟机规范，来探讨一下经典的JVM内存布局。</p>
 <blockquote>
-<p><strong>最后，如果项目和教程对你有所帮助或者你看见了还算比较喜欢，欢迎给我<code>star</code>，谢谢您！</strong></p>
+<p>我们通过磁盘或者网络IO得到的数据，都需要先加载到内存中，然后CPU从内存中获取数据进行读取，也就是说内存充当了CPU和磁盘之间的桥梁</p>
 </blockquote>
-<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
-
-<table>
-  <tbody><tr>
-    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/zan.png"></td>   
-  </tr>
-</tbody></table>
-<script>
+<p>运行时数据区的完整图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705112416101.png" alt="image-20200705112416101"></p>
+<p>Java虚拟机定义了若干种程序运行期间会使用到的运行时数据区，其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁。另外一些则是与线程一一对应的，这些与线程对应的数据区域会随着线程开始和结束而创建和销毁。</p>
+<p>灰色的为单独线程私有的，红色的为多个线程共享的。即：</p>
+<ul>
+<li>每个线程：独立包括程序计数器、栈、本地栈。</li>
+<li>线程间共享：堆、堆外内存（永久代或元空间、代码缓存）</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705112601211.png" alt="image-20200705112601211"></p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>线程是一个程序里的运行单元。JVM允许一个应用有多个线程并行的执行。<br>在Hotspot JVM里，每个线程都与操作系统的本地线程直接映射。</p>
+<ul>
+<li>当一个Java线程准备好执行以后，此时一个操作系统的本地线程也同时创建。Java线程执行终止后，本地线程也会回收。</li>
+</ul>
+<p>操作系统负责所有线程的安排调度到任何一个可用的CPU上。一旦本地线程初始化成功，它就会调用Java线程中的run（）方法。</p>
+<h3 id="JVM系统线程"><a href="#JVM系统线程" class="headerlink" title="JVM系统线程"></a>JVM系统线程</h3><p>如果你使用console或者是任何一个调试工具，都能看到在后台有许多线程在运行。这些后台线程不包括调用public static void main（String[]）的main线程以及所有这个main线程自己创建的线程。|<br>这些主要的后台系统线程在Hotspot JVM里主要是以下几个：</p>
+<ul>
+<li>虚拟机线程：这种线程的操作是需要JVM达到安全点才会出现。这些操作必须在不同的线程中发生的原因是他们都需要JVM达到安全点，这样堆才不会变化。这种线程的执行类型包括”stop-the-world”的垃圾收集，线程栈收集，线程挂起以及偏向锁撤销。</li>
+<li>周期任务线程：这种线程是时间周期事件的体现（比如中断），他们一般用于周期性操作的调度执行。</li>
+<li>GC线程：这种线程对在JVM里不同种类的垃圾收集行为提供了支持。</li>
+<li>编译线程：这种线程在运行时会将字节码编译成到本地代码。</li>
+<li>信号调度线程：这种线程接收信号并发送给JVM，在它内部通过调用适当的方法进行处理。</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1116,7 +998,7 @@ public class ProxyFactory {
                     </span>
                     <a href="https://sunhwee.com" class="b-link-green">李玉的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/05/15/mybatis/" class="b-link-green">MyBatis自定义实现</a>
+                    <a href="/2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/" class="b-link-green">运行时数据区概述及线程(03)</a>
                 </p>
             </div>
 
@@ -1139,7 +1021,7 @@ public class ProxyFactory {
         repo: 'shw2018.github.io',
         owner: 'shw2018',
         admin: ["shw2018"],
-        id: '2020/05/15/mybatis/',
+        id: '2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1458,46 +1340,50 @@ public class ProxyFactory {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/06/15/liunx/">
+                <a href="/2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="工作中Liunx常用命令">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="运行时数据区概述及线程(03)">
                         
-                        <span class="card-title">工作中Liunx常用命令</span>
+                        <span class="card-title">运行时数据区概述及线程(03)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Liunx
+                            运行时数据区概述及线程前言本节主要讲的是运行时数据区，也就是下图这部分，它是在类加载完成后的阶段
+
+当我们通过前面的：类的加载-&gt; 验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 这几个阶段完成后，就会用到执行引擎对我们
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Liunx/" class="post-category" target="_blank">
-                                    Liunx
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                    Jvm
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Liunx/" target="_blank">
-                        <span class="chip bg-color">Liunx</span>
+                    <a href="/tags/Jvm/" target="_blank">
+                        <span class="chip bg-color">Jvm</span>
                     </a>
                     
                 </div>
@@ -1511,31 +1397,40 @@ public class ProxyFactory {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/blog-open-source/">
+                <a href="/2020/11/04/lei-jia-zai-zi-xi-tong-02/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="博客开源">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="类加载子系统(02)">
                         
-                        <span class="card-title">博客开源</span>
+                        <span class="card-title">类加载子系统(02)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            倒腾了一两周总算把个人博客网站完善了，目前这个版本使用应该是够了，当然还有一些优化项和功能增加后续在慢慢更新，为了回馈开源，今天准备把我自己修改完善的`blog`网站源代码开源。这不是生成后的网页文件，是您可以直接使用的源码，您只需要把博客相关信息换成您自己的就可以部署了。
+                            类加载子系统概述
+完整图如下
+
+如果自己想手写一个Java虚拟机的话，主要考虑哪些结构呢？
+
+类加载器
+执行引擎
+
+类加载器子系统作用类加载器子系统负责从文件系统或者网络中加载Class文件，class文件在文件开头有特定的文件标识。
+Cl
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/软件安装与配置/" class="post-category" target="_blank">
-                                    软件安装与配置
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                    Jvm
                                 </a>
                             
                             
@@ -1545,16 +1440,8 @@ public class ProxyFactory {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Hexo/" target="_blank">
-                        <span class="chip bg-color">Hexo</span>
-                    </a>
-                    
-                    <a href="/tags/Github/" target="_blank">
-                        <span class="chip bg-color">Github</span>
-                    </a>
-                    
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
+                    <a href="/tags/Jvm/" target="_blank">
+                        <span class="chip bg-color">Jvm</span>
                     </a>
                     
                 </div>

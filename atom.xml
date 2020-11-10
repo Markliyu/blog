@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sunhwee.com/"/>
-  <updated>2020-11-10T08:35:15.692Z</updated>
+  <updated>2020-11-10T08:42:11.552Z</updated>
   <id>https://sunhwee.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>运行时数据区概述及线程(03)</title>
+    <link href="https://sunhwee.com/2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/"/>
+    <id>https://sunhwee.com/2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/</id>
+    <published>2020-11-10T08:37:32.084Z</published>
+    <updated>2020-11-10T08:42:11.552Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;运行时数据区概述及线程&quot;&gt;&lt;a href=&quot;#运行时数据区概述及线程&quot; class=&quot;headerlink&quot; title=&quot;运行时数据区概述及线程&quot;&gt;&lt;/a&gt;运行时数据区概述及线程&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Jvm" scheme="https://sunhwee.com/categories/Jvm/"/>
+    
+    
+      <category term="Jvm" scheme="https://sunhwee.com/tags/Jvm/"/>
+    
+  </entry>
   
   <entry>
     <title>类加载子系统(02)</title>
@@ -69,32 +95,6 @@
   </entry>
   
   <entry>
-    <title>Kafka</title>
-    <link href="https://sunhwee.com/2020/08/07/kafka/"/>
-    <id>https://sunhwee.com/2020/08/07/kafka/</id>
-    <published>2020-08-06T16:00:00.000Z</published>
-    <updated>2020-08-13T16:00:06.745Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;简短介绍&quot;&gt;&lt;a href=&quot;#简短介绍&quot; class=&quot;headerlink&quot; title=&quot;简短介绍&quot;&gt;&lt;/a&gt;简短介绍&lt;/h1&gt;&lt;h2 id=&quot;Kafka&quot;&gt;&lt;a href=&quot;#Kafka&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="Liunx" scheme="https://sunhwee.com/categories/Liunx/"/>
-    
-    
-      <category term="Liunx" scheme="https://sunhwee.com/tags/Liunx/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ELK</title>
     <link href="https://sunhwee.com/2020/08/07/elk/"/>
     <id>https://sunhwee.com/2020/08/07/elk/</id>
@@ -110,6 +110,32 @@
           &lt;h1 id=&quot;简短介绍&quot;&gt;&lt;a href=&quot;#简短介绍&quot; class=&quot;headerlink&quot; title=&quot;简短介绍&quot;&gt;&lt;/a&gt;简短介绍&lt;/h1&gt;&lt;p&gt;ELK&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;Liunx命令&quot;&gt;&lt;a href=&quot;#Liunx命令&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Liunx" scheme="https://sunhwee.com/categories/Liunx/"/>
+    
+    
+      <category term="Liunx" scheme="https://sunhwee.com/tags/Liunx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka</title>
+    <link href="https://sunhwee.com/2020/08/07/kafka/"/>
+    <id>https://sunhwee.com/2020/08/07/kafka/</id>
+    <published>2020-08-06T16:00:00.000Z</published>
+    <updated>2020-08-13T16:00:06.745Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简短介绍&quot;&gt;&lt;a href=&quot;#简短介绍&quot; class=&quot;headerlink&quot; title=&quot;简短介绍&quot;&gt;&lt;/a&gt;简短介绍&lt;/h1&gt;&lt;h2 id=&quot;Kafka&quot;&gt;&lt;a href=&quot;#Kafka&quot; class=&quot;headerlink&quot;
         
       
     
