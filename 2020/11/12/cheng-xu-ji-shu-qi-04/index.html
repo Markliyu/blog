@@ -6,16 +6,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="ELK, 李玉的博客">
+    <meta name="keywords" content="程序计数器(04), 李玉的博客">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="简短介绍ELK
-
-Liunx命令总结：记录工作中常用的Liunx命令
-压缩/解压JAR  
-
-windows打包: jar -cvf test.jar @test.txt   
-liunx打包： jar -cvf test.jar cat ">
+    <meta name="description" content="程序计数器介绍JVM中的程序计数寄存器（Program Counter Register）中，Register的命名源于CPU的寄存器，寄存器存储指令相关的现场信息。CPU只有把数据装载到寄存器才能够运行。这里，并非是广义上所指的物理寄存器">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -23,7 +17,7 @@ liunx打包： jar -cvf test.jar cat ">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ELK | 李玉的博客</title>
+    <title>程序计数器(04) | 李玉的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -622,13 +616,13 @@ liunx打包： jar -cvf test.jar cat ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        ELK
+                        程序计数器(04)
                     </div>
                 </div>
             </div>
@@ -740,8 +734,8 @@ liunx打包： jar -cvf test.jar cat ">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Liunx/" target="_blank">
-                                <span class="chip bg-color">Liunx</span>
+                            <a href="/tags/Jvm/" target="_blank">
+                                <span class="chip bg-color">Jvm</span>
                             </a>
                         
                     </div>
@@ -752,8 +746,8 @@ liunx打包： jar -cvf test.jar cat ">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Liunx/" class="post-category" target="_blank">
-                                Liunx
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                Jvm
                             </a>
                         
                     </div>
@@ -764,7 +758,7 @@ liunx打包： jar -cvf test.jar cat ">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-07
+                    2020-11-12
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -778,14 +772,14 @@ liunx打包： jar -cvf test.jar cat ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        374
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        4 分
                     </div>
                     
                 
@@ -802,42 +796,49 @@ liunx打包： jar -cvf test.jar cat ">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简短介绍"><a href="#简短介绍" class="headerlink" title="简短介绍"></a>简短介绍</h1><p>ELK</p>
-<hr>
-<h2 id="Liunx命令"><a href="#Liunx命令" class="headerlink" title="Liunx命令"></a>Liunx命令</h2><p>总结：记录工作中常用的Liunx命令</p>
-<h3 id="压缩-解压"><a href="#压缩-解压" class="headerlink" title="压缩/解压"></a>压缩/解压</h3><p>JAR  </p>
-<ol>
-<li>windows打包: jar -cvf test.jar @test.txt   </li>
-<li>liunx打包： jar -cvf test.jar <code>cat test.txt</code>  </li>
-<li>解压: jar -xvf test.jar<br>WAR</li>
-<li>单个文件压缩打包 tar czvf my.tar file1  </li>
-<li>多个文件压缩打包 tar czvf my.tar file1 file2,…  </li>
-<li>单个目录压缩打包 tar czvf my.tar dir1  </li>
-<li>多个目录压缩打包 tar czvf my.tar dir1 dir2  </li>
-<li>解包至当前目录：tar xzvf my.tar  </li>
-</ol>
-<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ol>
-<li>查询进程： ps -ef | grep tomcat </li>
-<li>查询端口号进程： lsof -i:8080</li>
-<li>通过端口号杀进程： kill -9 <code>lsof -ti:8080</code></li>
-<li>自启动进程： /etc/rc.d/rc.local</li>
-<li>临时关闭防火墙： service iptables stop</li>
-<li>永久关闭防火墙： vim /etc/selinux/config 设置 SELINUX=disabled   </li>
-</ol>
-<h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><ol>
-<li>杀死进程： kill -9 $(netstat -nlp | grep :8081 | awk ‘{print $7}’ | awk -F”/“ ‘{ print $1 }’)</li>
-<li>启动JAR包程序：  rm -rf 16666nohup.out<br>nohup java -jar eureka-server-0.0.1-SNAPSHOT.jar&gt;16666nohup.out 2&gt;&amp;1 &amp; tail -f 16666nohup.out</li>
-</ol>
-<blockquote>
-<p><strong>最后，如果项目和教程对你有所帮助或者你看见了还算比较喜欢，欢迎给我<code>star</code>，谢谢您！</strong></p>
-</blockquote>
-<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
-
-<table>
-  <tbody><tr>
-    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/zan.png"></td>   
-  </tr>
-</tbody></table>
+                <h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>JVM中的程序计数寄存器（Program Counter Register）中，Register的命名源于CPU的寄存器，寄存器存储指令相关的现场信息。CPU只有把数据装载到寄存器才能够运行。这里，并非是广义上所指的物理寄存器，或许将其翻译为PC计数器（或指令计数器）会更加贴切（也称为程序钩子），并且也不容易引起一些不必要的误会。JVM中的PC寄存器是对物理PC寄存器的一种抽象模拟。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705155551919.png" alt="image-20200705155551919"></p>
+<p>它是一块很小的内存空间，几乎可以忽略不记。也是运行速度最快的存储区域。</p>
+<p>在JVM规范中，每个线程都有它自己的程序计数器，是线程私有的，生命周期与线程的生命周期保持一致。</p>
+<p>任何时间一个线程都只有一个方法在执行，也就是所谓的当前方法。程序计数器会存储当前线程正在执行的Java方法的JVM指令地址；或者，如果是在执行native方法，则是未指定值（undefned）。</p>
+<p>它是程序控制流的指示器，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令。</p>
+<p>它是唯一一个在Java虚拟机规范中没有规定任何outotMemoryError情况的区域。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>PC寄存器用来存储指向下一条指令的地址，也即将要执行的指令代码。由执行引擎读取下一条指令。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705155728557.png" alt="image-20200705155728557"></p>
+<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p>我们首先写一个简单的代码</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**程序计数器
+ * @author: 
+ * @create: 2020-07-05-16:01
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PCRegisterTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> k <span class="token operator">=</span> i <span class="token operator">+</span> j<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后将代码进行编译成字节码文件，我们再次查看 ，发现在字节码的左边有一个行号标识，它其实就是指令地址，用于指向当前执行到哪里。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">0: bipush        10
+2: istore_1
+3: bipush        20
+5: istore_2
+6: iload_1
+7: iload_2
+8: iadd
+9: istore_3
+10: <span class="token keyword">return</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>通过PC寄存器，我们就可以知道当前程序执行到哪一步了 <img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705161007423.png" alt="image-20200705161007423"></p>
+<h2 id="使用PC寄存器存储字节码指令地址有什么用呢？"><a href="#使用PC寄存器存储字节码指令地址有什么用呢？" class="headerlink" title="使用PC寄存器存储字节码指令地址有什么用呢？"></a>使用PC寄存器存储字节码指令地址有什么用呢？</h2><p>因为CPU需要不停的切换各个线程，这时候切换回来以后，就得知道接着从哪开始继续执行。</p>
+<p>JVM的字节码解释器就需要通过改变PC寄存器的值来明确下一条应该执行什么样的字节码指令。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705161409533.png" alt="image-20200705161409533"></p>
+<h2 id="PC寄存器为什么被设定为私有的？"><a href="#PC寄存器为什么被设定为私有的？" class="headerlink" title="PC寄存器为什么被设定为私有的？"></a>PC寄存器为什么被设定为私有的？</h2><p>我们都知道所谓的多线程在一个特定的时间段内只会执行其中某一个线程的方法，CPU会不停地做任务切换，这样必然导致经常中断或恢复，如何保证分毫无差呢？为了能够准确地记录各个线程正在执行的当前字节码指令地址，最好的办法自然是为每一个线程都分配一个PC寄存器，这样一来各个线程之间便可以进行独立计算，从而不会出现相互干扰的情况。</p>
+<p>由于CPU时间片轮限制，众多线程在并发执行过程中，任何一个确定的时刻，一个处理器或者多核处理器中的一个内核，只会执行某个线程中的一条指令。</p>
+<p>这样必然导致经常中断或恢复，如何保证分毫无差呢？每个线程在创建后，都会产生自己的程序计数器和栈帧，程序计数器在各个线程之间互不影响。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705161812542.png" alt="image-20200705161812542"></p>
+<h2 id="CPU时间片"><a href="#CPU时间片" class="headerlink" title="CPU时间片"></a>CPU时间片</h2><p>CPU时间片即CPU分配给各个程序的时间，每个线程被分配一个时间段，称作它的时间片。</p>
+<p>在宏观上：俄们可以同时打开多个应用程序，每个程序并行不悖，同时运行。</p>
+<p>但在微观上：由于只有一个CPU，一次只能处理程序要求的一部分，如何处理公平，一种方法就是引入时间片，每个程序轮流执行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="/images/image-20200705161849557.png" alt="image-20200705161849557"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1006,7 +1007,7 @@ liunx打包： jar -cvf test.jar cat ">
                     </span>
                     <a href="https://sunhwee.com" class="b-link-green">李玉的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/08/07/elk/" class="b-link-green">ELK</a>
+                    <a href="/2020/11/12/cheng-xu-ji-shu-qi-04/" class="b-link-green">程序计数器(04)</a>
                 </p>
             </div>
 
@@ -1029,7 +1030,7 @@ liunx打包： jar -cvf test.jar cat ">
         repo: 'shw2018.github.io',
         owner: 'shw2018',
         admin: ["shw2018"],
-        id: '2020/08/07/elk/',
+        id: '2020/11/12/cheng-xu-ji-shu-qi-04/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1348,46 +1349,48 @@ liunx打包： jar -cvf test.jar cat ">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/07/kafka/">
+                <a href="/2020/11/12/cheng-xu-ji-shu-qi-04/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Kafka">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="程序计数器(04)">
                         
-                        <span class="card-title">Kafka</span>
+                        <span class="card-title">程序计数器(04)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Liunx
+                            程序计数器介绍JVM中的程序计数寄存器（Program Counter Register）中，Register的命名源于CPU的寄存器，寄存器存储指令相关的现场信息。CPU只有把数据装载到寄存器才能够运行。这里，并非是广义上所指的物理寄存器
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Liunx/" class="post-category" target="_blank">
-                                    Liunx
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                    Jvm
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Liunx/" target="_blank">
-                        <span class="chip bg-color">Liunx</span>
+                    <a href="/tags/Jvm/" target="_blank">
+                        <span class="chip bg-color">Jvm</span>
                     </a>
                     
                 </div>
@@ -1401,35 +1404,33 @@ liunx打包： jar -cvf test.jar cat ">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/18/jie-kou-dong-tai-dai-li/">
+                <a href="/2020/11/10/yun-xing-shi-shu-ju-qu-gai-shu-ji-xian-cheng-03/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="MyBatis中的基于接口的动态代理">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="运行时数据区概述及线程(03)">
                         
-                        <span class="card-title">MyBatis中的基于接口的动态代理</span>
+                        <span class="card-title">运行时数据区概述及线程(03)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MyBatis中的基于接口的动态代理
+                            运行时数据区概述及线程前言本节主要讲的是运行时数据区，也就是下图这部分，它是在类加载完成后的阶段
+
+当我们通过前面的：类的加载-&gt; 验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 这几个阶段完成后，就会用到执行引擎对我们
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-18
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JAVA/" class="post-category" target="_blank">
-                                    JAVA
-                                </a>
-                            
-                            <a href="/categories/JAVA/MyBatis/" class="post-category" target="_blank">
-                                    MyBatis
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                    Jvm
                                 </a>
                             
                             
@@ -1439,12 +1440,8 @@ liunx打包： jar -cvf test.jar cat ">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JAVA/" target="_blank">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
-                    <a href="/tags/MyBatis/" target="_blank">
-                        <span class="chip bg-color">MyBatis</span>
+                    <a href="/tags/Jvm/" target="_blank">
+                        <span class="chip bg-color">Jvm</span>
                     </a>
                     
                 </div>
@@ -1592,13 +1589,6 @@ liunx打包： jar -cvf test.jar cat ">
 
 </main>
 
-
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
 
         <footer class="page-footer bg-color">
     <div class="container row center-align">
