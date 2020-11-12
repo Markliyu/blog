@@ -778,14 +778,14 @@ liunx打包： jar -cvf test">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        648
+                        727
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -855,7 +855,15 @@ vmid，VM的进程号，即当前运行的java进程号
 interval，间隔时间，单位为秒或者毫秒
 count，打印次数，如果缺省则打印无数次
 
-jstat -gc 12538 5000 </code></pre><script>
+jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
+<ul>
+<li>jinfo pid . 即不加参数，jinfo后面直接跟进程id。会同时打印jvm命令行参数和java system properties</li>
+<li>jinfo -flags pid . 只打印jvm命令行参数</li>
+<li>jinfo -sysprops pid . 只打印java system properties</li>
+</ul>
+<pre><code> jinfo -flag NewRatio pid  新生区比例
+ jinfo -flag SurvivorRatio pid  幸存者区比例
+ jinfo -flag MaxTenuringThreshold pid 最大阙值</code></pre><script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1647,7 +1655,7 @@ jstat -gc 12538 5000 </code></pre><script>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">17.2k</span> 字
+                <span class="white-color">17.3k</span> 字
             
 
             
