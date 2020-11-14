@@ -778,14 +778,14 @@ liunx打包： jar -cvf test">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        727
+                        925
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -863,7 +863,34 @@ jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
 </ul>
 <pre><code> jinfo -flag NewRatio pid  新生区比例
  jinfo -flag SurvivorRatio pid  幸存者区比例
- jinfo -flag MaxTenuringThreshold pid 最大阙值</code></pre><script>
+ jinfo -flag MaxTenuringThreshold pid 最大阙值</code></pre><p> 4、参数设置</p>
+<p>  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html</a></p>
+<ul>
+<li><p>-XX：+PrintFlagsInitial：查看所有的参数的默认初始值</p>
+</li>
+<li><p>-XX：+PrintFlagsFinal：查看所有的参数的最终值（可能会存在修改，不再是初始值）</p>
+</li>
+<li><p>-Xms：初始堆空间内存（默认为物理内存的1/64）</p>
+</li>
+<li><p>-Xmx：最大堆空间内存（默认为物理内存的1/4）</p>
+</li>
+<li><p>-Xmn：设置新生代的大小。（初始值及最大值）</p>
+</li>
+<li><p>-XX:NewRatio：配置新生代与老年代在堆结构的占比</p>
+</li>
+<li><p>-XX:SurvivorRatio：设置新生代中Eden和S0/S1空间的比例</p>
+</li>
+<li><p>-XX:MaxTenuringThreshold：设置新生代垃圾的最大年龄</p>
+</li>
+<li><p>-XX：+PrintGCDetails：输出详细的GC处理日志</p>
+<ul>
+<li>打印gc简要信息：①-Xx：+PrintGC  ② - verbose:gc</li>
+</ul>
+</li>
+<li><p>-XX:HandlePromotionFalilure：是否设置空间分配担保</p>
+<pre><code>java -XX:+PrintFlagsFinal | grep NewRatio</code></pre></li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1655,7 +1682,7 @@ jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">18.4k</span> 字
+                <span class="white-color">21.2k</span> 字
             
 
             

@@ -6,12 +6,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="MyBatis中的基于接口的动态代理, 李玉的博客">
+    <meta name="keywords" content="正则表达式, 李玉的博客">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="KeoTn_OFy4ndJwXNmm2gMeQfPhd7alqE9vQDwI32KCY">
-    <meta name="description" content="简短介绍MyBatis中的基于接口的动态代理简易实现
-
-MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中接口的动态代理对象的原理,故学习记录。原理：在配置文件中，或者基于注解来进行扫描，在容器中自动生成需要Mappe">
+    <meta name="description" content="正则表达式介绍正则表达式是对字符串（包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为“元字符”））操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +17,7 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>MyBatis中的基于接口的动态代理 | 李玉的博客</title>
+    <title>正则表达式 | 李玉的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -618,13 +616,13 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        MyBatis中的基于接口的动态代理
+                        正则表达式
                     </div>
                 </div>
             </div>
@@ -736,12 +734,8 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/JAVA/" target="_blank">
-                                <span class="chip bg-color">JAVA</span>
-                            </a>
-                        
-                            <a href="/tags/MyBatis/" target="_blank">
-                                <span class="chip bg-color">MyBatis</span>
+                            <a href="/tags/正则表达式/" target="_blank">
+                                <span class="chip bg-color">正则表达式</span>
                             </a>
                         
                     </div>
@@ -752,12 +746,8 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/JAVA/" class="post-category" target="_blank">
-                                JAVA
-                            </a>
-                        
-                            <a href="/categories/JAVA/MyBatis/" class="post-category" target="_blank">
-                                MyBatis
+                            <a href="/categories/正则表达式/" class="post-category" target="_blank">
+                                正则表达式
                             </a>
                         
                     </div>
@@ -768,7 +758,7 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-18
+                    2020-11-14
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -782,14 +772,14 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        562
+                        2.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        9 分
                     </div>
                     
                 
@@ -806,143 +796,200 @@ MyBatis中的基于接口的动态代理最近在学习MyBatis，不理解其中
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简短介绍"><a href="#简短介绍" class="headerlink" title="简短介绍"></a>简短介绍</h1><p>MyBatis中的基于接口的动态代理简易实现</p>
-<hr>
-<h2 id="MyBatis中的基于接口的动态代理"><a href="#MyBatis中的基于接口的动态代理" class="headerlink" title="MyBatis中的基于接口的动态代理"></a>MyBatis中的基于接口的动态代理</h2><p>最近在学习MyBatis，不理解其中接口的动态代理对象的原理,故学习记录。<br>原理：<br>在配置文件中，或者基于注解来进行扫描，在容器中自动生成需要Mapper或者dao的动态代理类,功能简单，<br>但是MyBatis中的Mapper原理于此相同</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ul>
-<li><ol>
-<li><p>接口 没有实现类，只是接口</p>
-<pre><code>  
-public interface UserDao {
-
-int add(String str);
-
-int update(String str);
-
-</code></pre></li>
-</ol>
-</li>
-</ul>
-<p>}<br></p>
-<ul>
-<li><p>2.实现类</p>
-<pre><code> 
-public class RentHouseImpl implements IRentHouse {
-  @Override
-  public void rent() {
-      System.out.println("我需要租一间房子");
-  }
-}
-</code></pre></li>
-<li><p>3.代理类</p>
-<pre><code> 
-public class MapperProxy<t> implements InvocationHandler {
-
-  //需要代理的接口
-  private final Class<t> mapperInterface;
-
-  public MapperProxy(Class<t> mapperInterface) {
-      this.mapperInterface = mapperInterface;
-  }
-
-  @Override
-  public Object invoke(Object o, Method method, Object[] args) throws Throwable {
-      //判断是否为Object原生方法
-      MapperMethod mapperMethod = null;
-      if (Object.class.equals(method.getDeclaringClass())){
-          return method.invoke(this,args);
-      }else {
-          //不是的话 代理对象调用方法
-          mapperMethod = new MapperMethod(method, this);
-      }
-      return mapperMethod.execute(args);
-  }
-
-</t></t></t></code></pre></li>
-</ul>
-<p>}<br></p>
-<ul>
-<li><p>3.代理调用方法</p>
-<pre><code> 
-public class MapperMethod {
-
-  //方法
-  private Method method;
-  //代理类
-  private MapperProxy mapperProxy;
-
-  public MapperMethod(Method method, MapperProxy mapperProxy) {
-      this.method = method;
-      this.mapperProxy = mapperProxy;
-  }
-
-  /**
-   * 传入参数
-   * @return
-   */
-  public Object execute(Object[] args){
-      System.out.println("MapperProxy: " + mapperProxy);
-      System.out.println("execute method {" + method.getName() + "}" );
-      final Annotation[] annotations = method.getAnnotations();
-      for (Annotation annotation : annotations) {
-          Class<!--? extends Annotation--> aClass = annotation.annotationType();
-              System.out.println("execute insert {" + args[0] + "} completed");
-      }
-      return 1;
-  }
-}
-</code></pre></li>
-<li><p>4.工厂类</p>
-<pre><code> 
-public class MapperProxyFactory<t> {
-
-   private Class<t> mapperInterface;
-
-   public MapperProxyFactory(Class<t> mapperInterface) {
-       this.mapperInterface = (Class<t>) mapperInterface;
-   }
-
-   public T newInstance(){
-       //生成动态代理类
-       final MapperProxy<t> mapperProxy = new MapperProxy&lt;&gt;(mapperInterface);
-       return newInstance(mapperProxy);
-   }
-
-   protected T newInstance(MapperProxy<t> mapperProxy){
-       return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(), new Class[]{mapperInterface}, mapperProxy);
-   }
-}
-</t></t></t></t></t></t></code></pre>
-
-</li>
-</ul>
-<p>测试</p>
-<pre><code> 
-public class TestProxy {
-
-    public static void main(String[] args) {
-        System.out.println("实例化UserDao的代理工厂");
-        MapperProxyFactory<userdao> userDaoProxyFactory = new MapperProxyFactory&lt;&gt;(UserDao.class);
-
-        UserDao target = userDaoProxyFactory.newInstance();
-        System.out.println(target);
-
-        target.add("chinoukin");
-
-        target.update("chenyingqin");
-    }
-}
-</userdao></code></pre>
-<blockquote>
-<p><strong>最后，如果项目和教程对你有所帮助或者你看见了还算比较喜欢，欢迎给我<code>star</code>，谢谢您！</strong></p>
-</blockquote>
-<p><strong>持续更新中…，如果遇到问题欢迎联系我，在文章最后评论区【留言和讨论】，当然，欢迎点击文章最后的打赏按键，请博主一杯冰阔乐，笑～</strong></p>
-
-<table>
-  <tbody><tr>
-    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/alipay.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/wechat.bmp"></td>    <td><img width="100" src="https://cdn.jsdelivr.net/gh/shw2018/cdn@1.0/sakura/img/loader/orange.progress-bar-stripe-loader.svg" data-original="https://sunhwee.com/medias/reward/zan.png"></td>   
-  </tr>
+                <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>正则表达式是对字符串（包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为“元字符”））操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。正则表达式是一种文本模式，该模式描述在搜索文本时要匹配的一个或多个字符串 </p>
+<h2 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h2><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>将下一个字符标记符、或一个向后引用、或一个八进制转义符。例如，“\n”匹配\n。“\n”匹配换行符。序列“\”匹配“\”而“(”则匹配“(”。即相当于多种编程语言中都有的“转义字符”的概念。</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入字行首。如果设置了RegExp对象的Multiline属性，^也匹配“\n”或“\r”之后的位置。</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入行尾。如果设置了RegExp对象的Multiline属性，$也匹配“\n”或“\r”之前的位置。</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前面的子表达式任意次。例如，zo<em>能匹配“z”，也能匹配“zo”以及“zoo”。</em>等价于{0,}。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的子表达式一次或多次(大于等于1次）。例如，“zo+”能匹配“zo”以及“zoo”，但不能匹配“z”。+等价于{1,}。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前面的子表达式零次或一次。例如，“do(es)?”可以匹配“do”或“does”。?等价于{0,1}。</td>
+</tr>
+<tr>
+<td>{<em>n</em>}</td>
+<td><em>n</em>是一个非负整数。匹配确定的<em>n</em>次。例如，“o{2}”不能匹配“Bob”中的“o”，但是能匹配“food”中的两个o。</td>
+</tr>
+<tr>
+<td>{<em>n</em>,}</td>
+<td><em>n</em>是一个非负整数。至少匹配<em>n</em>次。例如，“o{2,}”不能匹配“Bob”中的“o”，但能匹配“foooood”中的所有o。“o{1,}”等价于“o+”。“o{0,}”则等价于“o*”。</td>
+</tr>
+<tr>
+<td>{<em>n</em>,<em>m</em>}</td>
+<td><em>m</em>和<em>n</em>均为非负整数，其中<em>n</em>&lt;=<em>m</em>。最少匹配<em>n</em>次且最多匹配<em>m</em>次。例如，“o{1,3}”将匹配“fooooood”中的前三个o为一组，后三个o为一组。“o{0,1}”等价于“o?”。请注意在逗号和两个数之间不能有空格。</td>
+</tr>
+<tr>
+<td>?</td>
+<td>当该字符紧跟在任何一个其他限制符（<em>,+,?，{*n</em>}，{<em>n</em>,}，{<em>n</em>,<em>m</em>}）后面时，匹配模式是非贪婪的。非贪婪模式尽可能少地匹配所搜索的字符串，而默认的贪婪模式则尽可能多地匹配所搜索的字符串。例如，对于字符串“oooo”，“o+”将尽可能多地匹配“o”，得到结果[“oooo”]，而“o+?”将尽可能少地匹配“o”，得到结果 [‘o’, ‘o’, ‘o’, ‘o’]</td>
+</tr>
+<tr>
+<td>.点</td>
+<td>匹配除“\n”和”\r”之外的任何单个字符。要匹配包括“\n”和”\r”在内的任何字符，请使用像“[\s\S]”的模式。</td>
+</tr>
+<tr>
+<td>(pattern)</td>
+<td>匹配pattern并获取这一匹配。所获取的匹配可以从产生的Matches集合得到，在VBScript中使用SubMatches集合，在JScript中则使用$0…$9属性。要匹配圆括号字符，请使用“(”或“)”。</td>
+</tr>
+<tr>
+<td>(?:pattern)</td>
+<td>非获取匹配，匹配pattern但不获取匹配结果，不进行存储供以后使用。这在使用或字符“(|)”来组合一个模式的各个部分时很有用。例如“industr(?:y|ies)”就是一个比“industry|industries”更简略的表达式。</td>
+</tr>
+<tr>
+<td>(?=pattern)</td>
+<td>非获取匹配，正向肯定预查，在任何匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如，“Windows(?=95|98|NT|2000)”能匹配“Windows2000”中的“Windows”，但不能匹配“Windows3.1”中的“Windows”。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。</td>
+</tr>
+<tr>
+<td>(?!pattern)</td>
+<td>非获取匹配，正向否定预查，在任何不匹配pattern的字符串开始处匹配查找字符串，该匹配不需要获取供以后使用。例如“Windows(?!95|98|NT|2000)”能匹配“Windows3.1”中的“Windows”，但不能匹配“Windows2000”中的“Windows”。</td>
+</tr>
+<tr>
+<td>(?&lt;=pattern)</td>
+<td>非获取匹配，反向肯定预查，与正向肯定预查类似，只是方向相反。例如，“(?&lt;=95|98|NT|2000)Windows”能匹配“2000Windows”中的“Windows”，但不能匹配“3.1Windows”中的“Windows”。*python的正则表达式没有完全按照正则表达式规范实现，所以一些高级特性建议使用其他语言如java、scala等</td>
+</tr>
+<tr>
+<td>(?&lt;!pattern)</td>
+<td>非获取匹配，反向否定预查，与正向否定预查类似，只是方向相反。例如“(?&lt;!95|98|NT|2000)Windows”能匹配“3.1Windows”中的“Windows”，但不能匹配“2000Windows”中的“Windows”。*python的正则表达式没有完全按照正则表达式规范实现，所以一些高级特性建议使用其他语言如java、scala等</td>
+</tr>
+<tr>
+<td>x|y</td>
+<td>匹配x或y。例如，“z|food”能匹配“z”或“food”(此处请谨慎)。“[z|f]ood”则匹配“zood”或“food”。</td>
+</tr>
+<tr>
+<td>[xyz]</td>
+<td>字符集合。匹配所包含的任意一个字符。例如，“[abc]”可以匹配“plain”中的“a”。</td>
+</tr>
+<tr>
+<td>[^xyz]</td>
+<td>负值字符集合。匹配未包含的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”任一字符。</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>字符范围。匹配指定范围内的任意字符。例如，“[a-z]”可以匹配“a”到“z”范围内的任意小写字母字符。注意:只有连字符在字符组内部时,并且出现在两个字符之间时,才能表示字符的范围; 如果出字符组的开头,则只能表示连字符本身.</td>
+</tr>
+<tr>
+<td>[^a-z]</td>
+<td>负值字符范围。匹配任何不在指定范围内的任意字符。例如，“[^a-z]”可以匹配任何不在“a”到“z”范围内的任意字符。</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配一个单词的边界，也就是指单词和空格间的位置（即正则表达式的“匹配”有两种概念，一种是匹配字符，一种是匹配位置，这里的\b就是匹配位置的）。例如，“er\b”可以匹配“never”中的“er”，但不能匹配“verb”中的“er”；“\b1_”可以匹配“1_23”中的“1_”，但不能匹配“21_3”中的“1_”。</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界。“er\B”能匹配“verb”中的“er”，但不能匹配“never”中的“er”。</td>
+</tr>
+<tr>
+<td>\cx</td>
+<td>匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“c”字符。</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配一个数字字符。等价于[0-9]。grep 要加上-P，perl正则支持</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配一个非数字字符。等价于[^0-9]。grep要加上-P，perl正则支持</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>匹配一个换页符。等价于\x0c和\cL。</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>匹配一个换行符。等价于\x0a和\cJ。</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>匹配一个回车符。等价于\x0d和\cM。</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任何不可见字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任何可见字符。等价于[^ \f\n\r\t\v]。</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>匹配一个制表符。等价于\x09和\cI。</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>匹配一个垂直制表符。等价于\x0b和\cK。</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配包括下划线的任何单词字符。类似但不等价于“[A-Za-z0-9_]”，这里的”单词”字符使用Unicode字符集。</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任何非单词字符。等价于“[^A-Za-z0-9_]”。</td>
+</tr>
+<tr>
+<td>\x<em>n</em></td>
+<td>匹配<em>n</em>，其中<em>n</em>为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“\x41”匹配“A”。“\x041”则等价于“\x04&amp;1”。正则表达式中可以使用ASCII编码。</td>
+</tr>
+<tr>
+<td>*num*</td>
+<td>匹配<em>num</em>，其中<em>num</em>是一个正整数。对所获取的匹配的引用。例如，“(.)\1”匹配两个连续的相同字符。</td>
+</tr>
+<tr>
+<td>*n*</td>
+<td>标识一个八进制转义值或一个向后引用。如果*n<em>之前至少</em>n<em>个获取的子表达式，则</em>n<em>为向后引用。否则，如果</em>n<em>为八进制数字（0-7），则</em>n*为一个八进制转义值。</td>
+</tr>
+<tr>
+<td>*nm*</td>
+<td>标识一个八进制转义值或一个向后引用。如果*nm<em>之前至少有</em>nm<em>个获得子表达式，则</em>nm<em>为向后引用。如果\</em>nm<em>之前至少有</em>n<em>个获取，则</em>n<em>为一个后跟文字</em>m<em>的向后引用。如果前面的条件都不满足，若</em>n<em>和</em>m<em>均为八进制数字（0-7），则\</em>nm<em>将匹配八进制转义值</em>nm*。</td>
+</tr>
+<tr>
+<td>*nml*</td>
+<td>如果<em>n</em>为八进制数字（0-7），且<em>m</em>和<em>l</em>均为八进制数字（0-7），则匹配八进制转义值<em>nml</em>。</td>
+</tr>
+<tr>
+<td>\u<em>n</em></td>
+<td>匹配<em>n</em>，其中<em>n</em>是一个用四个十六进制数字表示的Unicode字符。例如，\u00A9匹配版权符号（©）。</td>
+</tr>
+<tr>
+<td>\p{P}</td>
+<td>小写 p 是 property 的意思，表示 Unicode 属性，用于 Unicode 正表达式的前缀。中括号内的“P”表示Unicode 字符集七个字符属性之一：标点字符。其他六个属性：L：字母；M：标记符号（一般不会单独出现）；Z：分隔符（比如空格、换行等）；S：符号（比如数学符号、货币符号等）；N：数字（比如阿拉伯数字、罗马数字等）；C：其他字符。<em>*注：此语法部分语言不支持，例：javascript。</em></td>
+</tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>匹配词（word）的开始（&lt;）和结束（&gt;）。例如正则表达式&lt;the&gt;能够匹配字符串”for the wise”中的”the”，但是不能匹配字符串”otherwise”中的”the”。注意：这个元字符不是所有的软件都支持的。</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>将( 和 ) 之间的表达式定义为“组”（group），并且将匹配这个表达式的字符保存到一个临时区域（一个正则表达式中最多可以保存9个），它们可以用 \1 到\9 的符号来引用。</td>
+</tr>
+<tr>
+<td>|</td>
+<td>将两个匹配条件进行逻辑“或”（or）运算。例如正则表达式(him|her) 匹配”it belongs to him”和”it belongs to her”，但是不能匹配”it belongs to them.”。注意：这个元字符不是所有的软件都支持的。</td>
+</tr>
 </tbody></table>
+<h2 id="练习网站"><a href="#练习网站" class="headerlink" title="练习网站"></a>练习网站</h2><p><a href="https://codejiaonang.com/#/" target="_blank" rel="noopener">https://codejiaonang.com/#/</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1111,7 +1158,7 @@ public class TestProxy {
                     </span>
                     <a href="https://sunhwee.com" class="b-link-green">李玉的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2020/07/18/jie-kou-dong-tai-dai-li/" class="b-link-green">MyBatis中的基于接口的动态代理</a>
+                    <a href="/2020/11/14/zheng-ze-biao-da-shi/" class="b-link-green">正则表达式</a>
                 </p>
             </div>
 
@@ -1134,7 +1181,7 @@ public class TestProxy {
         repo: 'shw2018.github.io',
         owner: 'shw2018',
         admin: ["shw2018"],
-        id: '2020/07/18/jie-kou-dong-tai-dai-li/',
+        id: '2020/11/14/zheng-ze-biao-da-shi/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1453,46 +1500,48 @@ public class TestProxy {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/08/07/elk/">
+                <a href="/2020/11/14/zheng-ze-biao-da-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ELK">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="正则表达式">
                         
-                        <span class="card-title">ELK</span>
+                        <span class="card-title">正则表达式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Liunx
+                            正则表达式介绍正则表达式是对字符串（包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为“元字符”））操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Liunx/" class="post-category" target="_blank">
-                                    Liunx
+                            <a href="/categories/正则表达式/" class="post-category" target="_blank">
+                                    正则表达式
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Liunx/" target="_blank">
-                        <span class="chip bg-color">Liunx</span>
+                    <a href="/tags/正则表达式/" target="_blank">
+                        <span class="chip bg-color">正则表达式</span>
                     </a>
                     
                 </div>
@@ -1506,31 +1555,31 @@ public class TestProxy {
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/15/proxy/">
+                <a href="/2020/11/12/cheng-xu-ji-shu-qi-04/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="JAVA代理">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="程序计数器(04)">
                         
-                        <span class="card-title">JAVA代理</span>
+                        <span class="card-title">程序计数器(04)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            JDK动态代理
+                            程序计数器介绍JVM中的程序计数寄存器（Program Counter Register）中，Register的命名源于CPU的寄存器，寄存器存储指令相关的现场信息。CPU只有把数据装载到寄存器才能够运行。这里，并非是广义上所指的物理寄存器
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-15
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JAVA/" class="post-category" target="_blank">
-                                    JAVA
+                            <a href="/categories/Jvm/" class="post-category" target="_blank">
+                                    Jvm
                                 </a>
                             
                             
@@ -1540,16 +1589,8 @@ public class TestProxy {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
-                    </a>
-                    
-                    <a href="/tags/JAVA/" target="_blank">
-                        <span class="chip bg-color">JAVA</span>
-                    </a>
-                    
-                    <a href="/tags/代理/" target="_blank">
-                        <span class="chip bg-color">代理</span>
+                    <a href="/tags/Jvm/" target="_blank">
+                        <span class="chip bg-color">Jvm</span>
                     </a>
                     
                 </div>
