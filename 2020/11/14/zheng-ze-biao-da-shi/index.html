@@ -779,7 +779,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        9 分
+                        10 分
                     </div>
                     
                 
@@ -990,10 +990,19 @@
 </tr>
 </tbody></table>
 <h2 id="练习网站"><a href="#练习网站" class="headerlink" title="练习网站"></a>练习网站</h2><p><a href="https://codejiaonang.com/#/" target="_blank" rel="noopener">https://codejiaonang.com/#/</a></p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>(\d{10})-(\d{7})\s+([\u4E00-\u9FA5\\s]+)[-|\s+]?(\d+)
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre class="line-numbers language-js"><code class="language-js"><span class="token punctuation">(</span>\d<span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token punctuation">(</span>\d<span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">}</span><span class="token punctuation">)</span>\s<span class="token operator">+</span><span class="token punctuation">(</span><span class="token punctuation">[</span>\u4E00<span class="token operator">-</span>\u9FA5\\s<span class="token punctuation">]</span><span class="token operator">+</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token operator">|</span>\s<span class="token operator">+</span><span class="token punctuation">]</span><span class="token operator">?</span><span class="token punctuation">(</span>\d<span class="token operator">+</span><span class="token punctuation">)</span>
 
-9743912472-0101040    内蒙古-11001007200059261668
-9743915972-0601090    日本-7111010182600403068</code></pre><script>
+<span class="token number">9743912472</span><span class="token operator">-</span><span class="token number">0101040</span>    内蒙古<span class="token operator">-</span><span class="token number">11001007200059261668</span>
+<span class="token number">9743915972</span><span class="token operator">-</span><span class="token number">0601090</span>    日本<span class="token operator">-</span><span class="token number">7111010182600403068</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">两边空格
+ str <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/^\s+|\s+$/g</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+左边空格
+ str<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span> <span class="token regex">/^\s*/</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+右边空格
+ str<span class="token operator">=</span>str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/(\s*$)/g</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+全部空格
+ str <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/\s+/g</span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -1503,48 +1512,54 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/14/zheng-ze-biao-da-shi/">
+                <a href="/2020/11/17/sql/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="正则表达式">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="SQL">
                         
-                        <span class="card-title">正则表达式</span>
+                        <span class="card-title">SQL</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            正则表达式介绍正则表达式是对字符串（包括普通字符（例如，a 到 z 之间的字母）和特殊字符（称为“元字符”））操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符
+                            SQL介绍
+SQL 指结构化查询语言
+SQL 使我们有能力访问数据库
+SQL 是一种 ANSI 的标准计算机语言
+
+例子1、复制表数据
+select * into 目标表 from 原表;
+2、更新数据
+update 目标表1 a,目标表2
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-11-17
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/正则表达式/" class="post-category" target="_blank">
-                                    正则表达式
+                            <a href="/categories/SQL/" class="post-category" target="_blank">
+                                    SQL
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/正则表达式/" target="_blank">
-                        <span class="chip bg-color">正则表达式</span>
+                    <a href="/tags/SQL/" target="_blank">
+                        <span class="chip bg-color">SQL</span>
                     </a>
                     
                 </div>
@@ -1768,7 +1783,7 @@
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">21.2k</span> 字
+                <span class="white-color">21.6k</span> 字
             
 
             

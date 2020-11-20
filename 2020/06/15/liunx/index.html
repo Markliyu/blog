@@ -778,14 +778,14 @@ liunx打包： jar -cvf test">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        925
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -817,13 +817,28 @@ liunx打包： jar -cvf test">
 <li>解包至当前目录：tar xzvf my.tar  </li>
 </ol>
 <h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ol>
-<li>查询进程： ps -ef | grep tomcat </li>
-<li>查询端口号进程： lsof -i:8080</li>
-<li>通过端口号杀进程： kill -9 <code>lsof -ti:8080</code></li>
-<li>自启动进程： /etc/rc.d/rc.local</li>
-<li>临时关闭防火墙： service iptables stop</li>
-<li>永久关闭防火墙： vim /etc/selinux/config 设置 SELINUX=disabled</li>
-<li>NAT模式设置网络<br>DEVICE=eth0<br>HWADDR=00:0C:29:09:B7:BE<br>TYPE=Ethernet<br>UUID=d8f3553a-9ecc-4e03-b203-2e9bdf945c46<br>ONBOOT=yes<br>NM_CONTROLLED=yes<br>BOOTPROTO=static<br>IPADDR=192.168.110.128</li>
+<li><p>查询进程： ps -ef | grep tomcat </p>
+</li>
+<li><p>查询端口号进程： lsof -i:8080</p>
+</li>
+<li><p>通过端口号杀进程： kill -9 <code>lsof -ti:8080</code></p>
+</li>
+<li><p>自启动进程： /etc/rc.d/rc.local</p>
+</li>
+<li><p>临时关闭防火墙： service iptables stop</p>
+</li>
+<li><p>永久关闭防火墙： vim /etc/selinux/config 设置 SELINUX=disabled</p>
+</li>
+<li><p>NAT模式设置网络<br>DEVICE=eth0<br>HWADDR=00:0C:29:09:B7:BE<br>TYPE=Ethernet<br>UUID=d8f3553a-9ecc-4e03-b203-2e9bdf945c46<br>ONBOOT=yes<br>NM_CONTROLLED=yes<br>BOOTPROTO=static<br>IPADDR=192.168.110.128</p>
+</li>
+<li><p>后台进程</p>
+<pre class="line-numbers language-shell"><code class="language-shell">&    加在一个命令的最后，可以把这个命令放在后台执行  
+nohup    不挂断的运行命令 
+jobs        查看当前后台运行的命令 
+fg    将后台中的命令调至前台继续运行 
+Ctrl+z    将一个正在前台执行的命令放到后台，并且处于暂停状态 
+bg    将一个在后台暂停的命令，变成在后台继续执行 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
 </ol>
 <h3 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h3><ol>
 <li>杀死进程： kill -9 $(netstat -nlp | grep :8081 | awk ‘{print $7}’ | awk -F”/“ ‘{ print $1 }’)</li>
@@ -836,18 +851,19 @@ liunx打包： jar -cvf test">
 <h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><p>1.watch可以帮你监测一个命令的运行结果，来监测你想要的一切命令的结果变化   watch -n 1 -d ‘date’        （interval=<seconds>  n  differences d）</seconds></p>
 <p>2.cd -  返回上一次使用cd的目录</p>
 <p>3.修改/etc/ssh/ssh_config文件的配置，以后则不会再出现此问题<br>   需要使用root权限<br>   最后面添加：</p>
-<pre class="line-numbers language-java"><code class="language-java">StrictHostKeyChecking no
-UserKnownHostsFile <span class="token operator">/</span>dev<span class="token operator">/</span>null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell"><code class="language-shell">StrictHostKeyChecking no
+UserKnownHostsFile /dev/null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>4.Linux两台服务器之间直接传输文件和文件夹(scp)</p>
 <p>   scp -r  源服务器文件路径 目标服务器账号@目标服务器ip:路径 </p>
 <p>   scp -r  /data/jdk/  root@ip:/data/</p>
 <h3 id="JAVA"><a href="#JAVA" class="headerlink" title="JAVA"></a>JAVA</h3><p>1、jps</p>
-<pre><code>-q：只输出进程ID
+<pre class="line-numbers language-shell"><code class="language-shell">-q：只输出进程ID
 -m：输出传入 main 方法的参数 
 -l：输出完全的包名，应用主类名，jar的完全路径名 
 -v：输出jvm参数 
--V：输出通过flag文件传递到JVM中的参数</code></pre><p>2、jstat</p>
-<pre><code>jstat [Options] vmid [interval][count]
+-V：输出通过flag文件传递到JVM中的参数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2、jstat</p>
+<pre class="line-numbers language-shell"><code class="language-shell">jstat [Options] vmid [interval][count]
 参数说明：
 
 Options，选项，我们一般使用 -gcutil 查看gc情况
@@ -855,15 +871,24 @@ vmid，VM的进程号，即当前运行的java进程号
 interval，间隔时间，单位为秒或者毫秒
 count，打印次数，如果缺省则打印无数次
 
-jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
+jstat -gc 12538 5000 
+
+1.配置安全策略
+文件路径$JAVA_HOME/jre/lib/security/java.policy
+在文件末位的 }; 前添加
+permission java.security.AllPermission;
+2.启动jstatd
+jstatd -J-Djava.security.policy=/opt/jstatd.all.policy -p 12345 -J-Djava.rmi.server.logCalls=true -J-Djava.rmi.server.hostname=远程地址<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>3、jinfo</p>
 <ul>
 <li>jinfo pid . 即不加参数，jinfo后面直接跟进程id。会同时打印jvm命令行参数和java system properties</li>
 <li>jinfo -flags pid . 只打印jvm命令行参数</li>
 <li>jinfo -sysprops pid . 只打印java system properties</li>
 </ul>
-<pre><code> jinfo -flag NewRatio pid  新生区比例
+<pre class="line-numbers language-shell"><code class="language-shell"> jinfo -flag NewRatio pid  新生区比例
  jinfo -flag SurvivorRatio pid  幸存者区比例
- jinfo -flag MaxTenuringThreshold pid 最大阙值</code></pre><p> 4、参数设置</p>
+ jinfo -flag MaxTenuringThreshold pid 最大阙值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p> 4、参数设置</p>
 <p>  <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html</a></p>
 <ul>
 <li><p>-XX：+PrintFlagsInitial：查看所有的参数的默认初始值</p>
@@ -888,8 +913,18 @@ jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
 </ul>
 </li>
 <li><p>-XX:HandlePromotionFalilure：是否设置空间分配担保</p>
-<pre><code>java -XX:+PrintFlagsFinal | grep NewRatio</code></pre></li>
+<pre class="line-numbers language-shell"><code class="language-shell">java -XX:+PrintFlagsFinal | grep NewRatio<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
 </ul>
+<p>5、JMX</p>
+<pre class="line-numbers language-shell"><code class="language-shell">Tomcat catalina.sh  /Execute The Requested Command 上方
+
+CATALINA_OPTS="$CATALINA_OPTS
+-Dcom.sun.management.jmxremote
+-Djava.rmi.server.hostname=172.77.50.233
+-Dcom.sun.management.jmxremote.port=9999
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1682,7 +1717,7 @@ jstat -gc 12538 5000 </code></pre><p>3、jinfo</p>
 
             
                 &nbsp; | &nbsp;字数统计:&nbsp;
-                <span class="white-color">21.2k</span> 字
+                <span class="white-color">21.6k</span> 字
             
 
             
